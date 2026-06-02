@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
 
           {/* Quick links & contact details split (Col span 7) */}
-          <div className="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
+          <div className="md:col-span-7 flex flex-col md:items-end justify-center">
             
             {/* Crown Offices Contact Panel */}
             <div className="flex flex-col">
@@ -93,24 +93,10 @@ export default function Footer() {
                   <span>{profileDetails.contactEmail}</span>
                 </a>
                 
-                <div className="flex items-start gap-2.5 text-xs text-royal-400">
+                <div className="flex items-start gap-2.5 text-xs text-royal-400 max-w-sm">
                   <MapPin className="w-4 h-4 text-gold-500/80 shrink-0 mt-0.5" />
                   <span className="leading-relaxed">{profileDetails.officeAddress}</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Quick Declarations */}
-            <div>
-              <span className="font-mono text-[9px] tracking-widest text-[#B3923C] uppercase mb-4 block">
-                ✦ Public Trust Information
-              </span>
-              <p className="font-sans font-light text-[11px] text-royal-400 leading-relaxed mb-4">
-                All records published here are verified and maintained directly by the House of Valerius communication chamber under license number VCP-2024.
-              </p>
-              <div className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-wider text-royal-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#96762C]" />
-                <span>Geotargeted Server Location</span>
               </div>
             </div>
 
