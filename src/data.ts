@@ -46,8 +46,8 @@ export const timelineData: TimelineEntry[] = [
   {
     year: "1994",
     title: "Early Foundations & Education",
-    subtitle: "Ikot Etuk Primary & Midtown Commercial",
-    description: "Began formal education at Ikot Etuk Government Primary School, building outstanding discipline before moving to Midtown Secondary Commercial School in Ikot Ekpene.",
+    subtitle: "Ikot Etuk Udo Primary & Midtown Commercial",
+    description: "Began formal education at Ikot Etuk Udo Government Primary School, building outstanding discipline before moving to Midtown Secondary Commercial School in Ikot Ekpene.",
     highlights: ["Excelled in commercial subjects, arithmetic, and leadership positions", "Represented Midtown in regional academic competitions"],
     location: "Ikot Ekpene"
   },

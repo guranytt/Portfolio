@@ -38,6 +38,25 @@ export default function Biography() {
     };
   }, []);
 
+  // Stop playing music immediately if user leaves the tab, switches focus, or navigates away
+  useEffect(() => {
+    const handleLeave = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleLeave);
+    window.addEventListener("blur", handleLeave);
+    window.addEventListener("pagehide", handleLeave);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleLeave);
+      window.removeEventListener("blur", handleLeave);
+      window.removeEventListener("pagehide", handleLeave);
+    };
+  }, []);
+
   // Viewport scroll-based Intersection Observer triggers cues
   useEffect(() => {
     if (!audioRef.current) return;
