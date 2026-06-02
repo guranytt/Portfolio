@@ -199,7 +199,7 @@ export default function Biography() {
         </div>
 
         {/* Asymmetrical Editorial Timeline */}
-        <div className="relative pl-4 sm:pl-8 lg:pl-12 border-l border-gold-300/40 ml-2 sm:ml-4 lg:ml-8 flex flex-col gap-16 md:gap-20">
+        <div className="relative pl-6 sm:pl-10 lg:pl-14 border-l border-gold-300/40 ml-2 sm:ml-4 lg:ml-8 flex flex-col gap-16 md:gap-20">
           
           {/* Subtle line glowing effect */}
           <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-gradient-to-b from-gold-500 via-royal-950/20 to-transparent pointer-events-none" />
@@ -218,8 +218,8 @@ export default function Biography() {
                 className="relative group grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 text-left"
               >
                 {/* Timeline Circle Bullet */}
-                <span className="absolute left-[-21px] sm:left-[-37px] lg:left-[-53px] top-4 md:top-8 w-10 h-10 rounded-full bg-[#FAF8F5] border border-gold-300/60 flex items-center justify-center transition-all duration-300 group-hover:border-gold-500 group-hover:bg-[#FAF8F5] shadow-sm z-10">
-                  <span className="w-3 h-3 rounded-full bg-gold-400 group-hover:bg-gold-600 transition-colors duration-300" />
+                <span className="absolute left-[-34px] sm:left-[-50px] lg:left-[-66px] top-[18px] md:top-[38px] w-5 h-5 rounded-full bg-[#FAF8F5] border border-gold-300/60 flex items-center justify-center transition-all duration-300 group-hover:border-gold-500 group-hover:bg-[#FAF8F5] shadow-sm z-10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold-400 group-hover:bg-gold-600 transition-colors duration-300" />
                 </span>
 
                 {/* Left Column: Big Year Marker */}
