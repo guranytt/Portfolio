@@ -80,7 +80,7 @@ export default function Navigation() {
               <Crown className="w-5 h-5 text-royal-950" />
             </div>
             <div>
-              <span className="font-serif text-base tracking-wide font-normal max-sm:hidden block text-royal-100 uppercase">
+              <span className="font-serif text-xs sm:text-base tracking-wide font-normal block text-white uppercase">
                 {profileDetails.name}
               </span>
               <span className="font-mono text-[9px] tracking-widest text-[#B3923C] uppercase block leading-none">
