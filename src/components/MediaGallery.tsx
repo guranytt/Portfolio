@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Camera,
@@ -9,10 +9,7 @@ import {
   ChevronRight,
   Maximize2,
   Sparkles,
-  Heart,
-  Upload,
-  Loader2,
-  Image as ImageIcon
+  Heart
 } from "lucide-react";
 import { mediaGallery } from "../data";
 import GoldenFrame from "./GoldenFrame";
@@ -21,113 +18,13 @@ export default function MediaGallery() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [isZoomed, setIsZoomed] = useState(false);
-  
-  // Cloudinary storage arrays and states
-  const [cloudImages, setCloudImages] = useState<any[]>([]);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadStatus, setUploadStatus] = useState("");
-  const [dragOver, setDragOver] = useState(false);
-  const [isFetchLoading, setIsFetchLoading] = useState(false);
 
-  // Available Filter Categories (Adding live Cloud catalog)
-  const categories = ["All", "Official", "Family", "Diplomacy", "Conservation", "Cloud"];
-
-  // Fetch Cloudinary hosted pictures on mount
-  useEffect(() => {
-    fetchCloudImages();
-  }, []);
-
-  const fetchCloudImages = async () => {
-    setIsFetchLoading(true);
-    try {
-      const res = await fetch("/api/cloudinary/images");
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success && Array.isArray(data.images)) {
-          setCloudImages(data.images);
-        }
-      }
-    } catch (err) {
-      console.error("Connection failed while reaching the Cloudinary bridge API:", err);
-    } finally {
-      setIsFetchLoading(false);
-    }
-  };
-
-  // Upload handler to write files to Cloudinary bucket server-side
-  const handleFileUpload = async (file: File) => {
-    if (!file) return;
-    
-    // Check if it's an image file
-    if (!file.type.startsWith("image/")) {
-      setUploadStatus("Error: Only image files are allowed.");
-      return;
-    }
-
-    setIsUploading(true);
-    setUploadStatus("Inflow request accepted...");
-
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      
-      setUploadStatus("Streaming data payload to Cloudinary...");
-      const res = await fetch("/api/cloudinary/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setUploadStatus("Asset securely registered in cloud ledger!");
-        // Refresh live listings
-        await fetchCloudImages();
-        // Immediately focalize user onto their Cloud directory
-        setActiveCategory("Cloud");
-      } else {
-        setUploadStatus(`Config error: ${data.message}`);
-      }
-    } catch (err: any) {
-      setUploadStatus(`Security stream failed: ${err.message || err}`);
-    } finally {
-      setTimeout(() => {
-        setIsUploading(false);
-        setUploadStatus("");
-      }, 4000);
-    }
-  };
-
-  const onDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(true);
-  };
-
-  const onDragLeave = () => {
-    setDragOver(false);
-  };
-
-  const onDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setDragOver(false);
-    const files = e.dataTransfer.files;
-    if (files && files.length > 0) {
-      handleFileUpload(files[0]);
-    }
-  };
-
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      handleFileUpload(files[0]);
-    }
-  };
-
-  // Harmonize static media items with Cloudinary uploaded documents
-  const combinedGallery = [...cloudImages, ...mediaGallery];
+  // Available Filter Categories
+  const categories = ["All", "Official", "Family", "Diplomacy"];
 
   const filteredGallery = activeCategory === "All"
-    ? combinedGallery
-    : combinedGallery.filter(item => item.category === activeCategory);
+    ? mediaGallery
+    : mediaGallery.filter(item => item.category === activeCategory);
 
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -168,80 +65,6 @@ export default function MediaGallery() {
           <div className="h-[2px] w-12 bg-gold-500/60 mt-6" />
         </div>
 
-        {/* Cloud Upload Vault Chamber */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 max-w-2xl mx-auto bg-gradient-to-br from-royal-900 to-royal-950 border border-gold-500/20 p-6 md:p-8 relative overflow-hidden shadow-2xl"
-        >
-          {/* Accent light glow */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gold-400/5 rounded-full blur-3xl" />
-          
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-400/20 flex items-center justify-center text-gold-400">
-              <Upload className="w-4 h-4" />
-            </div>
-            <div>
-              <h3 className="font-serif text-lg text-royal-50 tracking-wide font-normal">Sovereign Cloud Uplink</h3>
-              <p className="font-sans text-stone-400 text-[10px] uppercase font-semibold tracking-wider">Host & Synchronize Images via Cloudinary</p>
-            </div>
-          </div>
-
-          {/* Interactive Drag & Drop Area */}
-          <div
-            onDragOver={onDragOver}
-            onDragLeave={onDragLeave}
-            onDrop={onDrop}
-            className={`border border-dashed transition-all duration-300 p-8 text-center flex flex-col items-center justify-center cursor-pointer ${
-              dragOver
-                ? "border-gold-400 bg-gold-400/10 scale-[0.99]"
-                : "border-royal-700 hover:border-gold-500/40 bg-royal-900/40"
-            }`}
-            onClick={() => document.getElementById("cloud-file-input")?.click()}
-          >
-            <input
-              id="cloud-file-input"
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={onFileChange}
-            />
-            
-            {isUploading ? (
-              <div className="flex flex-col items-center gap-3">
-                <Loader2 className="w-8 h-8 text-gold-400 animate-spin" />
-                <p className="font-mono text-[11px] text-gold-300 tracking-wider animate-pulse uppercase">
-                  {uploadStatus}
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                <ImageIcon className="w-8 h-8 text-royal-400 mx-auto group-hover:text-gold-400 mb-1" />
-                <p className="text-royal-200 font-sans text-xs md:text-sm font-light">
-                  Drag and drop a picture here, or <span className="text-gold-400 underline cursor-pointer font-normal">browse local files</span>
-                </p>
-                <p className="font-mono text-[9px] text-[#C5A880] tracking-wider uppercase">
-                  Direct connection secured to Cloudinary account: <span className="text-royal-300">dojayb3ro</span>
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Small Status Notification Line if any */}
-          {uploadStatus && !isUploading && (
-            <motion.div 
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-4 p-3 bg-royal-900/80 border border-royal-700 text-center rounded-xs"
-            >
-              <p className="font-mono text-[10px] text-gold-400 tracking-wide uppercase">
-                {uploadStatus}
-              </p>
-            </motion.div>
-          )}
-        </motion.div>
-
         {/* Gallery Category Menu */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12 border-b border-royal-800 pb-5">
           {categories.map((cat) => (
@@ -260,15 +83,9 @@ export default function MediaGallery() {
         </div>
 
         {/* Gallery Grid - Preserving Full Size and Resolution inside Exquisite Museum Frames */}
-        {isFetchLoading && cloudImages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center gap-3">
-            <Loader2 className="w-8 h-8 text-gold-400 animate-spin" />
-            <p className="font-mono text-xs tracking-wider text-[#C5A880] uppercase">Synchronizing with Cloudinary Ledger...</p>
-          </div>
-        ) : filteredGallery.length === 0 ? (
+        {filteredGallery.length === 0 ? (
           <div className="text-center py-24 border border-royal-800 bg-royal-900/20">
             <p className="font-serif text-xl font-light text-royal-400 italic">This archive vault is currently vacant.</p>
-            <p className="font-sans text-xs text-royal-500 mt-2">Use the uplink above to upload your first Cloudinary hosted picture.</p>
           </div>
         ) : (
           <motion.div
@@ -315,13 +132,6 @@ export default function MediaGallery() {
                           {item.description}
                         </p>
                       </div>
-
-                      {/* Small badge if it is from Cloudinary */}
-                      {item.category === "Cloud" && (
-                        <div className="absolute top-3 left-3 bg-gold-950/90 border border-[#B3923C]/50 px-2 py-0.5 rounded-none font-mono text-[7px] tracking-widest text-[#B3923C] uppercase">
-                          CLOUDINARY RESOURCE
-                        </div>
-                      )}
 
                       {/* Video indicator overlay */}
                       {item.type === "video" && (

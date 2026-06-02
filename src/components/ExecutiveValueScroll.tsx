@@ -4,10 +4,6 @@ import { Plane, Cpu, ShieldCheck, Heart, ArrowRight, Truck, Globe, ChevronLeft, 
 import { profileDetails, drNkantaPortrait, businessImg1, businessImg2, businessImg3, businessImg4, businessImg5 } from "../data";
 import GoldenFrame from "./GoldenFrame";
 
-// Import remaining local images
-import flybookingLobby from "../assets/images/flybooking_lobby_1780404545003.png";
-import zentechOffice from "../assets/images/zentech_office_1780404568311.png";
-
 interface ScrollSectionItem {
   id: string;
   category: string;
@@ -47,7 +43,7 @@ const scrollSections: ScrollSectionItem[] = [
     heading: "FlyBooking Arena World Class Platform",
     quote: '"Providing elite aviation concierge, booking systems, and absolute security."',
     body: "A high-fidelity online ecosystem designed for flight bookings, luxury hotel reservations, and swift visa assistance. FlyBooking Arena bridges international travel needs with localized expertise, redefining passenger convenience.",
-    image: flybookingLobby,
+    image: businessImg4,
     imgOnRight: true // Third picture is on the right
   },
   {
@@ -57,7 +53,7 @@ const scrollSections: ScrollSectionItem[] = [
     heading: "Zentech Advanced Software Engineering",
     quote: '"Empowering modern commercial enterprises with transparent software tools."',
     body: "Serving as the official implementation specialist for world-class Zoho, RetailMan, and QuickBooks digital ecosystems. Zentech Software Hub builds the secure digital audit trails that keep dynamic businesses secure.",
-    image: zentechOffice,
+    image: businessImg5,
     imgOnRight: false // Fourth picture is on the left
   },
   {

@@ -1,6 +1,3 @@
-import flybookingLobby from "./assets/images/flybooking_lobby_1780404545003.png";
-import zentechOffice from "./assets/images/zentech_office_1780404568311.png";
-
 import { TimelineEntry, LegacyAchievement, PortfolioItem, MediaItem, TestimonialItem } from "./types";
 
 // Cloudinary Hosted Verified Resources
@@ -154,7 +151,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "Dr. Nkanta explains how commercial enterprise can serve as a vessel for faith and the eradication of regional underemployment.",
     body: "The only language I practice is that which adds value to life. In business, we must not seek purely short-term profits. Our duty is to meet Christ through business—not in abstraction, but by creating concrete jobs, paying employees respectably and promptly, and fostering absolute corporate honesty.",
     tags: ["Leadership", "Business Philosophy", "Faith", "Ethics"],
-    featuredImage: flybookingLobby,
+    featuredImage: drNkantaPortrait,
     quote: {
       text: "Power is not the privilege to command, but the absolute duty to safeguard families.",
       source: "Dr. Edidiong Dominic Nkanta"
@@ -169,7 +166,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "Introducing absolute comfort to domestic and international air travel through rapid flight bookings, premium concierge, and automated visa assistance routes.",
     body: "Under his direct supervision, FlyBooking Arena developed a secure real-time api reservation framework. By connecting with dozens of global airlines and premier hotel partners, the platform processes complex multi-city bookings and streamlines high-profile corporate charters with precision.",
     tags: ["Aviation Tech", "Customer First", "SaaS Systems"],
-    featuredImage: "https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&q=80&w=1200",
+    featuredImage: businessImg4,
     quote: {
       text: "Travel should not be a series of stresses, but a smooth extension of executive focus.",
       source: "FlyBooking Executive Annual"
@@ -184,7 +181,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "A milestone study in credit management and institutional risk mitigation presented to state ministries by the Chartered Institute of Loan & Risk Management.",
     body: "High interest rates and unpredictable regional trade cycles require modern risk modeling. This paper outlines tools that financial institutes can implement to evaluate credit profiles fairly, ensuring that small-to-medium businesses gain continuous asset security without default.",
     tags: ["Risk Management", "Tax Law", "Auditing"],
-    featuredImage: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200"
+    featuredImage: businessImg3
   },
   {
     id: "appear-zentech-summit",
@@ -195,7 +192,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "Inaugurating Zentech's software hub in association with Zoho, RetailMan, and QuickBooks to transition legacy warehouses into smart digital operations.",
     body: "Bringing advanced cloud-based general ledgers and multi-location asset trackers to local merchants. Dr. Nkanta led the ribbon-cutting, stating that transparent audit trails are the armor of modern commerce.",
     tags: ["Accounting Software", "SME Digitalization", "Lagos Commerce"],
-    featuredImage: zentechOffice
+    featuredImage: businessImg5
   },
   {
     id: "proj-dhl-logistics",
