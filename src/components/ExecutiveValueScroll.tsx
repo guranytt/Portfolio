@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
-import { Plane, Cpu, ShieldCheck, Heart, ArrowRight } from "lucide-react";
-import { profileDetails, drNkantaPortrait } from "../data";
+import { Plane, Cpu, ShieldCheck, Heart, ArrowRight, Truck, Globe, ChevronLeft, ChevronRight, Maximize2, Minimize2 } from "lucide-react";
+import { profileDetails, drNkantaPortrait, businessImg1, businessImg2, businessImg3, businessImg4, businessImg5 } from "../data";
 import GoldenFrame from "./GoldenFrame";
 
 // Import remaining local images
@@ -31,6 +31,16 @@ const scrollSections: ScrollSectionItem[] = [
     imgOnRight: true // First picture is on the right
   },
   {
+    id: "gsc-logistics",
+    category: "GSC LOGISTICS EXPANSION",
+    icon: <Truck className="w-5 h-5 text-gold-400" />,
+    heading: "DHL Licensed Partnership & Global Commerce",
+    quote: '"Providing High-Speed Air Freight & Authorized Outlets Supporting SMEs."',
+    body: "Secured a prestigious DHL Authorized Service Partner license in 2024. GSC Logistics now operates DHL service outlets across Lagos and parts of Ogun State, giving SMEs faster access to international shipping across over 220 countries.",
+    image: businessImg1,
+    imgOnRight: false // Second picture is on the left
+  },
+  {
     id: "aviation-concierge",
     category: "GLOBAL CONNECTIVITY",
     icon: <Plane className="w-5 h-5 text-gold-400" />,
@@ -38,7 +48,7 @@ const scrollSections: ScrollSectionItem[] = [
     quote: '"Providing elite aviation concierge, booking systems, and absolute security."',
     body: "A high-fidelity online ecosystem designed for flight bookings, luxury hotel reservations, and swift visa assistance. FlyBooking Arena bridges international travel needs with localized expertise, redefining passenger convenience.",
     image: flybookingLobby,
-    imgOnRight: false // Second picture is on the left
+    imgOnRight: true // Third picture is on the right
   },
   {
     id: "software-digital",
@@ -48,7 +58,7 @@ const scrollSections: ScrollSectionItem[] = [
     quote: '"Empowering modern commercial enterprises with transparent software tools."',
     body: "Serving as the official implementation specialist for world-class Zoho, RetailMan, and QuickBooks digital ecosystems. Zentech Software Hub builds the secure digital audit trails that keep dynamic businesses secure.",
     image: zentechOffice,
-    imgOnRight: true // Third picture is on the right
+    imgOnRight: false // Fourth picture is on the left
   },
   {
     id: "risk-mitigation",
@@ -57,9 +67,17 @@ const scrollSections: ScrollSectionItem[] = [
     heading: "Sovereign Audit & Mitigation Frameworks",
     quote: '"True risk management safeguards our communities\' investment future."',
     body: "As a distinguished Fellow of the Chartered Institute of Loan and Risk Management of Nigeria and State Coordinator for Akwa Ibom State, Dr. Dominic Nkanta crafts corporate blueprints that mitigate operational vulnerability.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200",
-    imgOnRight: false // Fourth picture is on the left
+    image: businessImg3, // High-quality board meeting of Dr. Nkanta - replaced stock Unsplash image
+    imgOnRight: true // Fifth picture is on the right
   }
+];
+
+const businessImgs = [
+  { src: businessImg1, title: "GSC Logistics Operations Control", desc: "Multi-layered corporate team briefing under Dr. Nkanta's direction." },
+  { src: businessImg2, title: "Sealing the DHL Alliance", desc: "Dr. Edidiong Dominic Nkanta signing the historic international partnership." },
+  { src: businessImg3, title: "Corporate Governance Session", desc: "High-level board meeting reviewing logistics expansion metrics." },
+  { src: businessImg4, title: "DHL Service Outlet Hub", desc: "A fast-operating front-office shipment center supporting SMEs." },
+  { src: businessImg5, title: "Dr. Nkanta’s Leadership Mandate Briefing", desc: "Addressing branch executives and cargo managers on prompt timelines." }
 ];
 
 // Animation presets
@@ -119,6 +137,9 @@ function ScrollRevealWords({ text, className }: SecretRevealTextProps) {
 }
 
 export default function ExecutiveValueScroll() {
+  const [activeBusinessIndex, setActiveBusinessIndex] = useState(0);
+  const [isBusinessZoomed, setIsBusinessZoomed] = useState(false);
+
   return (
     <section 
       id="philosophy-scroll" 
@@ -182,15 +203,120 @@ export default function ExecutiveValueScroll() {
                   transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                   className="w-full relative shadow-2xl"
                 >
-                  <GoldenFrame title={item.heading} subtitle={item.category}>
-                    <div className="w-full h-[360px] sm:h-[420px] bg-stone-950 border-b border-gold-500/10 flex items-center justify-center p-2.5 overflow-hidden">
-                      <img 
-                        src={item.image} 
-                        alt={item.heading}
-                        className="max-w-full max-h-full w-auto h-auto object-contain filter brightness-105 contrast-95 transition-transform duration-700 hover:scale-[1.02]"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
+                  <GoldenFrame title={item.id === "gsc-logistics" ? businessImgs[activeBusinessIndex].title : item.heading} subtitle={item.category}>
+                    {item.id === "gsc-logistics" ? (
+                      // Interactive Business Carousel for Chapter 02 (GSC Logistics)
+                      <div className="w-full h-[360px] sm:h-[420px] bg-stone-950 border-b border-gold-500/10 flex flex-col items-center justify-between p-2.5 overflow-hidden relative">
+                        {/* Active Image */}
+                        <div className="w-full flex-grow flex items-center justify-center overflow-hidden h-[230px] sm:h-[270px]">
+                          <div 
+                            className={`w-full h-full flex items-center justify-center overflow-auto ${
+                              isBusinessZoomed ? "cursor-zoom-out" : "cursor-zoom-in"
+                            }`}
+                            style={{ scrollbarWidth: "thin", scrollbarColor: "#B3923C transparent" }}
+                            onClick={() => setIsBusinessZoomed(!isBusinessZoomed)}
+                            title={isBusinessZoomed ? "Click to Fit Frame" : "Click to View at 100% Native Resolution"}
+                          >
+                            <img 
+                              src={businessImgs[activeBusinessIndex].src} 
+                              alt={businessImgs[activeBusinessIndex].title}
+                              className={`transition-all duration-300 filter brightness-105 contrast-95 ${
+                                isBusinessZoomed 
+                                  ? "max-w-none max-h-none w-auto h-auto select-none pointer-events-auto" 
+                                  : "max-w-full max-h-full w-auto h-auto object-contain pointer-events-none"
+                              }`}
+                              referrerPolicy="no-referrer"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Thumbnail dots/selector */}
+                        <div className="w-full flex justify-center gap-1.5 py-1.5 bg-stone-950/80 border-t border-zinc-900 border-b border-zinc-900 z-10">
+                          {businessImgs.map((img, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => {
+                                setActiveBusinessIndex(idx);
+                                setIsBusinessZoomed(false);
+                              }}
+                              className={`w-7 h-7 border rounded-xs overflow-hidden transition-all duration-300 ${
+                                activeBusinessIndex === idx 
+                                  ? "border-gold-400 scale-105 brightness-110" 
+                                  : "border-stone-800 opacity-60 hover:opacity-95 hover:border-stone-600 hover:scale-105"
+                              }`}
+                              title={img.title}
+                            >
+                              <img src={img.src} alt={img.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                            </button>
+                          ))}
+                        </div>
+
+                        {/* Controls Row */}
+                        <div className="w-full flex items-center justify-between pt-2 bg-stone-950/90 z-20 px-2">
+                          {/* Title and Nav Indicators */}
+                          <div className="text-left max-w-[60%] leading-tight">
+                            <p className="font-serif text-[10px] text-gold-300 tracking-wide truncate">
+                              {businessImgs[activeBusinessIndex].title}
+                            </p>
+                            <p className="font-sans text-[8px] text-stone-400 truncate max-sm:hidden">
+                              {businessImgs[activeBusinessIndex].desc}
+                            </p>
+                          </div>
+
+                          {/* Navigation Buttons */}
+                          <div className="flex items-center gap-1 shrink-0">
+                            <button
+                              onClick={() => {
+                                setActiveBusinessIndex(prev => (prev === 0 ? businessImgs.length - 1 : prev - 1));
+                                setIsBusinessZoomed(false);
+                              }}
+                              className="p-1 rounded-full text-stone-400 hover:text-gold-200 bg-stone-900 border border-stone-800 hover:border-gold-500/30 transition-colors cursor-pointer"
+                              title="Previous image"
+                            >
+                              <ChevronLeft className="w-3.5 h-3.5" />
+                            </button>
+                            
+                            <span className="font-mono text-[8px] text-stone-500 px-1">
+                              {activeBusinessIndex + 1}/{businessImgs.length}
+                            </span>
+
+                            <button
+                              onClick={() => {
+                                setActiveBusinessIndex(prev => (prev === businessImgs.length - 1 ? 0 : prev + 1));
+                                setIsBusinessZoomed(false);
+                              }}
+                              className="p-1 rounded-full text-stone-400 hover:text-gold-200 bg-stone-900 border border-stone-800 hover:border-gold-500/30 transition-colors cursor-pointer"
+                              title="Next image"
+                            >
+                              <ChevronRight className="w-3.5 h-3.5" />
+                            </button>
+
+                            {/* Resolution Toggle Button */}
+                            <button
+                              onClick={() => setIsBusinessZoomed(!isBusinessZoomed)}
+                              className={`p-1 ml-1 rounded-sm border transition-all cursor-pointer ${
+                                isBusinessZoomed
+                                  ? "bg-gold-500/20 text-gold-200 border-gold-400"
+                                  : "bg-stone-900 text-stone-400 border-stone-800 hover:text-gold-200 hover:border-gold-500/30"
+                              }`}
+                              title={isBusinessZoomed ? "Fit to frame" : "Display at Normal Native Resolution"}
+                            >
+                              {isBusinessZoomed ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // Standard Framed Image
+                      <div className="w-full h-[360px] sm:h-[420px] bg-stone-950 border-b border-gold-500/10 flex items-center justify-center p-2.5 overflow-hidden">
+                        <img 
+                          src={item.image} 
+                          alt={item.heading}
+                          className="max-w-full max-h-full w-auto h-auto object-contain filter brightness-105 contrast-95 transition-transform duration-700 hover:scale-[1.02]"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    )}
                   </GoldenFrame>
 
                   {/* Absolute elegant numbers signifier */}
