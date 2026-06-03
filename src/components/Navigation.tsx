@@ -1,22 +1,26 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Crown, Menu, X, Mail } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { profileDetails } from "../data";
 
 export default function Navigation() {
   const [activeSection, setActiveSection] = useState("hero");
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const navLinks = [
-    { id: "hero", label: "Home" },
-    { id: "biography", label: "Chronology" },
-    { id: "philosophy-scroll", label: "Pillars" },
-    { id: "legacy", label: "Enterprise" },
-    { id: "portfolio", label: "Portfolio" },
-    { id: "media", label: "Gallery" },
-    { id: "testimonials", label: "Endorsements" },
-    { id: "contact", label: "Contact" }
+    { id: "hero", label: "Home", type: "hash" },
+    { id: "biography", label: "Chronology", type: "hash" },
+    { id: "philosophy-scroll", label: "Pillars", type: "hash" },
+    { id: "legacy", label: "Enterprise", type: "hash" },
+    { id: "portfolio", label: "Portfolio", type: "hash" },
+    { id: "media", label: "Gallery", type: "hash" },
+    { id: "testimonials", label: "Endorsements", type: "hash" },
+    { id: "vision", label: "Vision", type: "route", path: "/vision" },
+    { id: "contact", label: "Contact", type: "route", path: "/contact" }
   ];
 
   // Track page scroll coordinates for highlighting active section and updating background
@@ -29,35 +33,70 @@ export default function Navigation() {
         setIsScrolled(false);
       }
 
-      // 2. Active Section Highlight logic
-      const sections = navLinks.map(link => document.getElementById(link.id));
-      const scrollPosition = window.scrollY + 120; // offset threshold
+      if (location.pathname === "/") {
+        // 2. Active Section Highlight logic
+        const sections = navLinks.map(link => link.type === "hash" ? document.getElementById(link.id) : null);
+        const scrollPosition = window.scrollY + 120; // offset threshold
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const sec = sections[i];
-        if (sec) {
-          const offsetTop = sec.offsetTop;
-          if (scrollPosition >= offsetTop) {
-            setActiveSection(navLinks[i].id);
-            break;
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const sec = sections[i];
+          if (sec) {
+            const offsetTop = sec.offsetTop;
+            if (scrollPosition >= offsetTop) {
+              setActiveSection(navLinks[i].id);
+              break;
+            }
           }
+        }
+      } else {
+        const matchingLink = navLinks.find(l => l.path === location.pathname);
+        if (matchingLink) {
+          setActiveSection(matchingLink.id);
         }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // initial check
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
 
-  const scrollToEl = (id: string) => {
+  // Handle hash changes on mount
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      setTimeout(() => {
+        const id = location.hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          const offsetTop = element.offsetTop - 85;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth"
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
+
+  const handleNavClick = (link: typeof navLinks[0]) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const offsetTop = element.offsetTop - 85; // offset navbar height
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth"
-      });
+    
+    if (link.type === "route") {
+      navigate(link.path!);
+      window.scrollTo(0, 0);
+    } else {
+      if (location.pathname !== "/") {
+        navigate(`/#${link.id}`);
+      } else {
+        const element = document.getElementById(link.id);
+        if (element) {
+          const offsetTop = element.offsetTop - 85; // offset navbar height
+          window.scrollTo({
+            top: offsetTop,
+            behavior: "smooth"
+          });
+        }
+      }
     }
   };
 
@@ -74,7 +113,7 @@ export default function Navigation() {
           
           {/* Logo Branding */}
           <button
-            onClick={() => scrollToEl("hero")}
+            onClick={() => handleNavClick(navLinks[0])}
             className="flex items-center gap-2 text-left pointer-events-auto group cursor-pointer"
           >
             <div className="w-9 h-9 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center text-royal-950 shadow-md group-hover:shadow-gold-500/10 transition-shadow">
@@ -95,7 +134,7 @@ export default function Navigation() {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => scrollToEl(link.id)}
+                onClick={() => handleNavClick(link)}
                 className="relative py-2 font-mono text-[10px] tracking-widest uppercase transition-all duration-300 pointer-events-auto cursor-pointer"
               >
                 <span className={`${
@@ -156,7 +195,7 @@ export default function Navigation() {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => scrollToEl(link.id)}
+                onClick={() => handleNavClick(link)}
                 className={`py-2 text-left font-mono text-[11px] tracking-widest uppercase transition-colors pointer-events-auto cursor-pointer border-b border-royal-900/50 pb-2 ${
                   activeSection === link.id ? "text-gold-400 font-semibold" : "text-royal-300"
                 }`}
