@@ -87,7 +87,7 @@ export default function Footer() {
               <div className="space-y-4">
                 <a
                   href={`mailto:${profileDetails.contactEmail}`}
-                  className="inline-flex items-center gap-2.5 text-xs text-royal-300 hover:text-gold-300 transition-colors"
+                  className="inline-flex items-center gap-2.5 text-xs text-gold-400 underline underline-offset-4 hover:text-gold-300 transition-colors"
                 >
                   <Mail className="w-4 h-4 text-gold-500/80 shrink-0" />
                   <span>{profileDetails.contactEmail}</span>

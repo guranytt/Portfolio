@@ -40,7 +40,7 @@ export default function Contact() {
                   </h3>
                   <a
                     href={`mailto:${profileDetails.contactEmail}`}
-                    className="text-lg text-royal-700 hover:text-gold-600 transition-colors"
+                    className="text-lg text-gold-700 underline underline-offset-4 font-medium hover:text-gold-600 transition-colors"
                   >
                     {profileDetails.contactEmail}
                   </a>
@@ -74,7 +74,7 @@ export default function Contact() {
                       href={profileDetails.socials.guardianOffice}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-royal-700 hover:text-gold-600 transition-colors"
+                      className="inline-flex items-center gap-2 text-gold-700 underline underline-offset-4 font-medium hover:text-gold-600 transition-colors"
                     >
                       FlyBooking Arena <ArrowRight className="w-4 h-4" />
                     </a>
