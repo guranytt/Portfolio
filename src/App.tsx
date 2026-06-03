@@ -6,6 +6,7 @@ import Legacy from "./components/Legacy";
 import Portfolio from "./components/Portfolio";
 import MediaGallery from "./components/MediaGallery";
 import Testimonials from "./components/Testimonials";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 export const metadata = {
@@ -31,6 +32,7 @@ export default function App() {
         <Portfolio />
         <MediaGallery />
         <Testimonials />
+        <Contact />
       </main>
 
       {/* Elegant Editorial Footer */}

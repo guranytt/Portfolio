@@ -15,7 +15,8 @@ export default function Navigation() {
     { id: "legacy", label: "Enterprise" },
     { id: "portfolio", label: "Portfolio" },
     { id: "media", label: "Gallery" },
-    { id: "testimonials", label: "Endorsements" }
+    { id: "testimonials", label: "Endorsements" },
+    { id: "contact", label: "Contact" }
   ];
 
   // Track page scroll coordinates for highlighting active section and updating background
