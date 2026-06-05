@@ -166,7 +166,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "Introducing absolute comfort to domestic and international air travel through rapid flight bookings, premium concierge, and automated visa assistance routes.",
     body: "Under his direct supervision, FlyBooking Arena developed a secure real-time api reservation framework. By connecting with dozens of global airlines and premier hotel partners, the platform processes complex multi-city bookings and streamlines high-profile corporate charters with precision.",
     tags: ["Aviation Tech", "Customer First", "SaaS Systems"],
-    featuredImage: businessImg4,
+    featuredImage: businessImg1,
     quote: {
       text: "Travel should not be a series of stresses, but a smooth extension of executive focus.",
       source: "FlyBooking Executive Annual"
@@ -181,7 +181,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "A milestone study in credit management and institutional risk mitigation presented to state ministries by the Chartered Institute of Loan & Risk Management.",
     body: "High interest rates and unpredictable regional trade cycles require modern risk modeling. This paper outlines tools that financial institutes can implement to evaluate credit profiles fairly, ensuring that small-to-medium businesses gain continuous asset security without default.",
     tags: ["Risk Management", "Tax Law", "Auditing"],
-    featuredImage: businessImg3
+    featuredImage: businessImg2
   },
   {
     id: "appear-zentech-summit",
@@ -192,7 +192,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "Inaugurating Zentech's software hub in association with Zoho, RetailMan, and QuickBooks to transition legacy warehouses into smart digital operations.",
     body: "Bringing advanced cloud-based general ledgers and multi-location asset trackers to local merchants. Dr. Nkanta led the ribbon-cutting, stating that transparent audit trails are the armor of modern commerce.",
     tags: ["Accounting Software", "SME Digitalization", "Lagos Commerce"],
-    featuredImage: businessImg5
+    featuredImage: businessImg3
   },
   {
     id: "proj-dhl-logistics",
@@ -203,7 +203,7 @@ export const portfolioItems: PortfolioItem[] = [
     summary: "Securing a DHL Authorized Service Partner license in 2024 to operate outlets across Lagos and Ogun State, facilitating fast international shipping for SMEs.",
     body: "As part of his expansion in logistics, Dr. Nkanta secured a DHL Authorized Service Partner license in 2024. GSC Logistics now operates DHL service outlets across Lagos and parts of Ogun State, giving SMEs faster access to international shipping. This strategic alliance has empowered thousands of small-to-meaningful enterprises, lowering transit friction and establishing reliable air cargo routes to over 220 countries.",
     tags: ["Logistics", "DHL Partner", "Global Shipping", "SME Growth"],
-    featuredImage: businessImg2,
+    featuredImage: businessImg5,
     quote: {
       text: "Our partnership with DHL isn't merely transactional—it's a critical bridge linking the industrious spirit of local SMEs with global marketplaces.",
       source: "Dr. Edidiong Dominic Nkanta"
@@ -286,8 +286,8 @@ export const mediaGallery: MediaItem[] = [
     id: "m_bus1",
     type: "photo",
     src: businessImg1,
-    title: "GSC Logistics Operations Control",
-    description: "Multi-layered corporate team briefing under Dr. Nkanta's direction, coordinating bulk delivery systems and customs clearing pathways.",
+    title: "FlyBooking Arena World Class Platform",
+    description: "A high-fidelity online ecosystem designed for flight bookings, luxury hotel reservations, and swift visa assistance.",
     category: "Official",
     date: "2026-06",
     aspectRatioClassName: "md:col-span-1"
@@ -296,8 +296,8 @@ export const mediaGallery: MediaItem[] = [
     id: "m_bus2",
     type: "photo",
     src: businessImg2,
-    title: "Sealing the DHL Partnership Alliance",
-    description: "Dr. Edidiong Dominic Nkanta signing the historic international DHL Authorized Service Partner licensing, driving regional access for Nigerian SMEs.",
+    title: "Equipremark Resources Corporate Launch",
+    description: "Dr. Edidiong Dominic Nkanta pioneering integrated software setup, tax advisory, and premium accounting training programs in Lagos.",
     category: "Official",
     date: "2024-05",
     aspectRatioClassName: "md:col-span-1"
@@ -306,8 +306,8 @@ export const mediaGallery: MediaItem[] = [
     id: "m_bus3",
     type: "photo",
     src: businessImg3,
-    title: "Strategic Corporate Governance Session",
-    description: "High-level board meeting reviewing audit logs and scaling the distribution networks across Lagos and Ogun State.",
+    title: "Zentech Advanced Software Engineering",
+    description: "Inaugurating Zentech's software hub in association with Zoho, RetailMan, and QuickBooks to transition legacy warehouses into smart digital operations.",
     category: "Official",
     date: "2026-06",
     aspectRatioClassName: "md:col-span-2"
@@ -316,8 +316,8 @@ export const mediaGallery: MediaItem[] = [
     id: "m_bus4",
     type: "photo",
     src: businessImg4,
-    title: "DHL Authorized Service Outlet Hub",
-    description: "A fast-operating front-office shipment center supporting SME custom entries and worldwide air cargo routing seamlessly.",
+    title: "Naija Online Stores Marketplace",
+    description: "A secure online marketplace empowering thousands of local vendors to catalog and trade goods directly across Nigeria.",
     category: "Diplomacy",
     date: "2024-05",
     aspectRatioClassName: "md:col-span-1"
@@ -326,8 +326,8 @@ export const mediaGallery: MediaItem[] = [
     id: "m_bus5",
     type: "photo",
     src: businessImg5,
-    title: "Dr. Nkanta’s Leadership Mandate Briefing",
-    description: "Addressing branch executives and cargo managers on maintaining impeccable corporate ethics, 100% prompt payroll, and premium delivery execution.",
+    title: "GSC Logistics Operations Control",
+    description: "A high-level corporate team briefing under Dr. Nkanta's direction, coordinating delivery systems and customs clearing pathways.",
     category: "Official",
     date: "2026-06",
     aspectRatioClassName: "md:col-span-2"

@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import VisionPage from "./pages/VisionPage";
+import ReferringPage from "./pages/ReferringPage";
 import Contact from "./components/Contact";
 
 export const metadata = {
@@ -25,6 +26,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/vision" element={<VisionPage />} />
+            <Route path="/referring" element={<ReferringPage />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

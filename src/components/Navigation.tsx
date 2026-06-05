@@ -20,6 +20,7 @@ export default function Navigation() {
     { id: "media", label: "Gallery", type: "hash" },
     { id: "testimonials", label: "Endorsements", type: "hash" },
     { id: "vision", label: "Vision", type: "route", path: "/vision" },
+    { id: "referring", label: "References", type: "route", path: "/referring" },
     { id: "contact", label: "Contact", type: "route", path: "/contact" },
   ];
 
